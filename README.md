@@ -1,3 +1,3 @@
 "# test" 
 
-sed -i "/^#/!s/aaa:.*/aaa: 999/" test.txt 
+https://stackoverflow.com/questions/66720501/how-to-update-openssl-on-centos-7
