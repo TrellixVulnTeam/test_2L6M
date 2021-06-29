@@ -23,6 +23,7 @@ https://www.elastic.co/guide/en/elastic-stack/6.8/upgrading-elastic-stack.html
 
 
 ・カバレッジ取り方
+　→ coverage run manage.py runserver --noreload
 　traceモジュールは使えるか？
 ・リスケ計画
 ・buf監視処理検討
@@ -32,7 +33,3 @@ https://www.elastic.co/guide/en/elastic-stack/6.8/upgrading-elastic-stack.html
 ・システム設定値を登録しない方法を検討
 　→ writeする箇所でwriteしないようにする
 　　 PostgresSQL削除処理なんのためにある？
-
-ファイル構成が変わっているか3秒に1回チェック
-　・変わっている → そのまま0件になるまでチェック
-　・変わっていない → 3回チェックし、エラー
