@@ -42,3 +42,4 @@ coverage run manage.py runserver --noreload
 coverage run --append test.py
 coverage html
 coverage combine
+coverage run --parallel-mode test.py
