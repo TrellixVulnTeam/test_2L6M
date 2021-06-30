@@ -33,3 +33,12 @@ https://www.elastic.co/guide/en/elastic-stack/6.8/upgrading-elastic-stack.html
 ・システム設定値を登録しない方法を検討
 　→ writeする箇所でwriteしないようにする
 　　 PostgresSQL削除処理なんのためにある？
+
+
+
+
+
+coverage run manage.py runserver --noreload
+coverage run --append test.py
+coverage html
+coverage combine
