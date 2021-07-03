@@ -43,3 +43,8 @@ coverage run --append test.py
 coverage html
 coverage combine
 coverage run --parallel-mode test.py
+
+
+■参考
+https://developpaper.com/using-coverage-to-analyze-code-coverage-of-wsgi-project/
+
