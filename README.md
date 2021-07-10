@@ -48,3 +48,13 @@ coverage run --parallel-mode test.py
 ■参考
 https://developpaper.com/using-coverage-to-analyze-code-coverage-of-wsgi-project/
 
+
+# プロセスIDだけ取得
+ps ax | grep 'kworker' | awk '{print $1}' | sort
+
+# 特定文字以外
+grep -v 'u2'
+
+
+
+
