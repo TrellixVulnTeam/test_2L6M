@@ -27,21 +27,24 @@ def getIndices():
     print(len(result))
 
 def generateData(idx):
-    for i in range(2):
+    for i in range(5):
+        if i % 2 == 0:
+            idx_name = ("shio-index" + str(i))
+        else:
+            idx_name = ("tani-index" + str(i))
         yield {
             "_op_type": "create",
-            "_index": ("students" + str(idx)),
+            "_index": idx_name,
             "_source": {
                 "name": ("Jiro" + str(i)),
-                "age": 25,
-                "email": "jiro@example.com"
+                "age": (25 + i),
+                "email": "jiro{}@example.com".format(str(i))
             }
         }
 
 def bulk():
-    for idx in range(2000):
-        if (idx % 2 == 0):
-            helpers.bulk(es, generateData(idx))
+    for idx in range(1):
+        helpers.bulk(es, generateData(idx))
 
 def checkIndex():
     idx = "students100,students101,students1,students2,students3,students4,students700,students709"

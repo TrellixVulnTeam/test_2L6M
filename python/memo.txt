@@ -1,0 +1,24 @@
+■エクスポート
+C:\Users\user\Desktop\node\node_modules\.bin\elasticdump.cmd --input=http://localhost:9200/<index_name> --output=./<index_name>.json --type=data
+
+■インポート
+C:\Users\user\Desktop\node\node_modules\.bin\elasticdump.cmd --input=./<index_name>.json --output=http://localhost:9200/<index_name> --type=data
+
+■COPY
+copy (select * from members where id = 1) to '/tmp/members.csv';
+
+copy members from '/tmp/members.csv';
+
+copy members(name, age) from '/tmp/members.csv';
+
+
+■upsert
+CREATE TEMPORARY TABLE tmp_members AS TABLE members WITH NO DATA;
+
+copy tmp_members from '/tmp/members.csv';
+
+WITH update_result AS (UPDATE members SET name = tmp_members.name, age = tmp_members.age FROM tmp_members WHERE members.id = tmp_members.id RETURNING members.id)
+INSERT INTO members (id, name, age) SELECT tmp_members.id, tmp_members.name, tmp_members.age FROM tmp_members WHERE tmp_members.id NOT IN (SELECT id FROM update_result);
+
+
+
