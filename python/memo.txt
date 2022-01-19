@@ -22,3 +22,11 @@ INSERT INTO members (id, name, age) SELECT tmp_members.id, tmp_members.name, tmp
 
 
 
+■エクスポートに必要な容量推測
+1ロットデータから推測
+
+■エクスポート/インポートに必要な時間推測
+200ロットから推測
+テスト環境準備（客先、自社）
+
+
