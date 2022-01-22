@@ -9,8 +9,8 @@ def compress(dir):
 def decompress(targz):
     dir = targz.removesuffix(".tar.gz")
     with tarfile.open(targz, "r:gz") as t:
-        t.extractall(path=dir)
+        t.extractall(path=(dir + "testtest"))
 
-#compress("C:/Users/user/Desktop/python/mysite")
-#decompress("C:/Users/user/Desktop/python/mysite.tar.gz")
+#compress("src")
+decompress("src.tar.gz")
 
