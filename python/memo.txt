@@ -30,3 +30,8 @@ INSERT INTO members (id, name, age) SELECT tmp_members.id, tmp_members.name, tmp
 テスト環境準備（客先、自社）
 
 
+■
+
+
+
+
