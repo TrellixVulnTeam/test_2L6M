@@ -1,4 +1,2 @@
-from xxx import Xxx
-
-x  = Xxx()
-x.say()
+s = "\\x7465737431"
+print(bytes.fromhex(s[2:]).decode())
