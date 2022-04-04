@@ -1,0 +1,63 @@
+https://fastapi.tiangolo.com/ja/
+
+MIT license.
+
+Apacheで起動する？
+
+pip install fastapi uvicorn
+
+uvicorn intro:app --reload
+
+http://127.0.0.1:8000
+http://127.0.0.1:8000/docs
+
+
+Gunicorn
+
+https://qiita.com/sa_s/items/e11b0b6ec12f3f683a9f
+
+・django apache連携
+https://www.sejuku.net/blog/27637
+
+・apache gunicorn連携
+https://medium.com/django-deployment/how-to-setup-apache-with-gunicorn-6616986f1702
+
+・FastAPIをDjangoと比較
+https://engineer-first.net/ptxeoyrk1z5
+
+・ドキュメント
+http://127.0.0.1:8000/redoc
+
+■リクエスト
+curl --request POST --header "Content-Type: application/json" --data "{\"param1\":[\"hoge\"],\"param2\":\"foo\"}" "http://127.0.0.1:8000/test"
+
+■Swagger疑問
+・defaultって何？
+・日本語にできないか？
+・Parametersとは？なぜNo parametersになっている？
+・Schemaの読み方がわからない
+・API仕様はどうやって記述する？
+  - リクエスト/レスポンスの項目の説明
+  - APIの詳細仕様の説明
+  - エラーの説明
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
