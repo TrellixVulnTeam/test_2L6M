@@ -1,0 +1,77 @@
+host = param2
+user = param3
+pass = param4
+cmd = param5
+file = param6
+
+SUCCESS = 0
+CONNECT_ERR = 1
+
+logincmd = host
+;strconcat logincmd ':22 /I /V /ssh /2 /auth=password /nosecuritywarning /user='
+strconcat logincmd ':22 /ssh /2 /auth=password /nosecuritywarning /user='
+strconcat logincmd user
+strconcat logincmd ' /passwd='
+strconcat logincmd pass
+
+connect logincmd
+
+if result != 2 then
+	setexitcode CONNECT_ERR
+	end
+endif
+
+cmdendkey = ''
+strcompare user 'root'
+if result=0 then
+    cmdendkey = '#'
+else
+    cmdendkey = '$'
+endif
+
+wait cmdendkey
+
+sendln cmd
+
+recvln
+recvln
+strscan inputstr cmdendkey
+sendln ''
+
+while result=0
+	strconcat msg inputstr
+	strconcat msg #13
+	recvln
+	strscan inputstr cmdendkey
+endwhile
+
+;getdir cd
+;changedir cd
+filedelete file
+fileopen fhandle file 0
+filewrite fhandle msg
+fileclose fhandle
+
+fileopen fhandle file 0
+
+:freadloop
+filereadln fhandle buf
+if result goto breakloop
+	remotefile = buf
+	basename localfilename buf
+	localfile = 'C:\Users\user\Desktop\ttl\'
+	strconcat localfile localfilename
+	;messagebox localfile ""
+	scprecv remotefile localfile
+	mpause 2000
+goto freadloop
+
+:breakloop
+
+fileclose fhandle
+
+closett
+
+setexitcode SUCCESS
+
+end
