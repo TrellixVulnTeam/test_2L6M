@@ -8,8 +8,8 @@ SUCCESS = 0
 CONNECT_ERR = 1
 
 logincmd = host
-;strconcat logincmd ':22 /I /V /ssh /2 /auth=password /nosecuritywarning /user='
-strconcat logincmd ':22 /ssh /2 /auth=password /nosecuritywarning /user='
+strconcat logincmd ':22 /I /V /ssh /2 /auth=password /nosecuritywarning /user='
+;strconcat logincmd ':22 /ssh /2 /auth=password /nosecuritywarning /user='
 strconcat logincmd user
 strconcat logincmd ' /passwd='
 strconcat logincmd pass
@@ -62,8 +62,15 @@ if result goto breakloop
 	localfile = 'C:\Users\user\Desktop\ttl\'
 	strconcat localfile localfilename
 	;messagebox localfile ""
+	filedelete localfile
 	scprecv remotefile localfile
-	mpause 2000
+	do
+   		mpause 100
+		sendln 'ps -ef | grep -v grep | grep -c "scp -f ' remotefile '"'
+		recvln
+		recvln
+		strcompare inputstr '0'
+	loop while result != 0
 goto freadloop
 
 :breakloop
