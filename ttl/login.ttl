@@ -1,0 +1,30 @@
+host = 'localhost 2222'
+user = 'root'
+pass = 'test'
+cmd = 'ls -a'
+
+logincmd = host
+;strconcat logincmd ':22 /I /V /ssh /2 /auth=password /nosecuritywarning /user='
+strconcat logincmd ':22 /ssh /2 /auth=password /nosecuritywarning /user='
+strconcat logincmd user
+strconcat logincmd ' /passwd='
+strconcat logincmd pass
+
+connect logincmd
+
+;接続エラーは、1
+;認証エラーは、0
+
+cmdendkey = ''
+strcompare user 'root'
+if result=0 then
+    cmdendkey = '#'
+else
+    cmdendkey = '$'
+endif
+
+wait cmdendkey
+
+messagebox result ""
+
+end

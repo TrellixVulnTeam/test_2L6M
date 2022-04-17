@@ -1,0 +1,22 @@
+
+CREATE USER test_user2 WITH PASSWORD 'test'
+NOSUPERUSER INHERIT NOCREATEDB NOCREATEROLE NOREPLICATION VALID UNTIL 'infinity';
+
+GRANT CONNECT ON DATABASE testdb TO test_user2;
+GRANT USAGE ON SCHEMA public TO test_user2;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO test_user2;
+
+
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO readonly_user;
+REVOKE CREATE ON SCHEMA public FROM readonly_user;
+
+
+
+create table t_test6 (id int primary key, col1 varchar(100));
+ 
+
+https://stackoverflow.com/questions/760210/how-do-you-create-a-read-only-user-in-postgresql
+
+
+

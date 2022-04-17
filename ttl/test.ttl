@@ -1,15 +1,15 @@
-host = param2
-user = param3
-pass = param4
-cmd = param5
-file = param6
+host = 'locahost 2222'
+user = 'root'
+pass = 'test'
+cmd = 'ls -a'
+file = 'C:\Users\user\Desktop\result.txt'
 
 SUCCESS = 0
 CONNECT_ERR = 1
 
 logincmd = host
-strconcat logincmd ':22 /I /V /ssh /2 /auth=password /nosecuritywarning /user='
-;strconcat logincmd ':22 /ssh /2 /auth=password /nosecuritywarning /user='
+;strconcat logincmd ':22 /I /V /ssh /2 /auth=password /nosecuritywarning /user='
+strconcat logincmd ':22 /ssh /2 /auth=password /nosecuritywarning /user='
 strconcat logincmd user
 strconcat logincmd ' /passwd='
 strconcat logincmd pass
@@ -41,40 +41,14 @@ sendln ''
 while result=0
 	strconcat msg inputstr
 	strconcat msg #13
+	strconcat msg #10
 	recvln
 	strscan inputstr cmdendkey
 endwhile
 
-;getdir cd
-;changedir cd
 filedelete file
 fileopen fhandle file 0
 filewrite fhandle msg
-fileclose fhandle
-
-fileopen fhandle file 0
-
-:freadloop
-filereadln fhandle buf
-if result goto breakloop
-	remotefile = buf
-	basename localfilename buf
-	localfile = 'C:\Users\user\Desktop\ttl\'
-	strconcat localfile localfilename
-	;messagebox localfile ""
-	filedelete localfile
-	scprecv remotefile localfile
-	do
-   		mpause 100
-		sendln 'ps -ef | grep -v grep | grep -c "scp -f ' remotefile '"'
-		recvln
-		recvln
-		strcompare inputstr '0'
-	loop while result != 0
-goto freadloop
-
-:breakloop
-
 fileclose fhandle
 
 closett
